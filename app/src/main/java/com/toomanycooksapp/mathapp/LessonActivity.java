@@ -2,9 +2,11 @@ package com.toomanycooksapp.mathapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,6 +30,14 @@ public class LessonActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        lessonButton = (Button) findViewById(R.id.lessonButton);
+        gameButton = (Button) findViewById(R.id.gameButton);
+        fcButton = (Button) findViewById(R.id.fcButton);
+        quizButton = (Button) findViewById(R.id.quizButton);
+
         // Get called intent and integer corresponding to correct lesson
         Intent calledBy = getIntent();
         lesson = calledBy.getExtras().getInt("lesson");
@@ -36,6 +46,12 @@ public class LessonActivity extends ActionBarActivity {
         switch (lesson) {
             case 0:
                 lessonText.setText("Addition");
+                gameButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        startAddGame();
+                    }
+                });
                 break;
             case 1:
                 lessonText.setText("Subtraction");
@@ -77,5 +93,11 @@ public class LessonActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Creates intent and starts AddGameActivity
+    private void startAddGame() {
+        Intent intent = new Intent(this, AddGameActivity.class);
+        startActivity(intent);
     }
 }
