@@ -1,17 +1,56 @@
 package com.toomanycooksapp.mathapp;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    Button additionButton = null;
+    Button subtractionButton = null;
+    Button multiplicationButton = null;
+    Button divisionButton = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        additionButton = (Button) findViewById(R.id.additionButton);
+        subtractionButton = (Button) findViewById(R.id.subtractionButton);
+        multiplicationButton = (Button) findViewById(R.id.multiplicationButton);
+        divisionButton = (Button) findViewById(R.id.divisionButton);
+
+        additionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLesson(0);
+            }
+        });
+        subtractionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLesson(1);
+            }
+        });
+        multiplicationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLesson(2);
+            }
+        });
+        divisionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLesson(3);
+            }
+        });
     }
 
 
@@ -35,5 +74,19 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Method to move to the lesson activity
+    // This method will be called by all buttons, the difference is the integer passed in.
+    // All buttons will lead to the same activity, but the int will be passed to the LessonActivity
+    // Aspects of the LessonActivity will change depending on which int is passed (i.e. what button is clicked)
+    // For instance if the Addition button is clicked, 0 is passed, the app will go to the LessonActivity and have the game, flash cards, etc.
+    // which correspond to the Addition Lesson
+    // (if this doesn't make sense let me know and I will try to explain it better)
+    // (if it does make sense but you think there is a better way to do it go for it)
+    private void goToLesson(int lesson) {
+        Intent lessonIntent = new Intent(this, LessonActivity.class);
+        lessonIntent.putExtra("lesson", lesson);
+        startActivity(lessonIntent);
     }
 }
