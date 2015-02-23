@@ -141,21 +141,26 @@ public class DrawAddGame extends View{
                     int curTotal = 0;
                     if(fills[i] != 0) {
                         while (curPos != startPos * 7 && fills[curPos] != 0) {
+                            if(i != 0 && i != 7 && i != 14 && i != 21 && i != 28 && i != 35 && i != 42) {
+                                if(fills[i - 1] != 0) {
+                                    break;
+                                }
+                            }
                             curTotal += fills[curPos];
                             toRemove.push(curPos);
-                            if(curTotal == goal) {
-                                while(!toRemove.empty()){
-                                    fills[toRemove.pop()] = 0;
-                                    score += 10;
-                                }
-                                setGoal();
-                                invalidate();
-                                break;
-                            }
                             curPos++;
                             if(curPos > 48) {
                                 break;
                             }
+                        }
+                        if(curTotal == goal) {
+                            while(!toRemove.empty()){
+                                fills[toRemove.pop()] = 0;
+                                score += 10;
+                            }
+                            setGoal();
+                            invalidate();
+                            break;
                         }
                         while(!toRemove.empty()){
                             toRemove.pop();
@@ -165,19 +170,20 @@ public class DrawAddGame extends View{
                         while (curPos != startPos + 41 && fills[curPos] != 0) {
                             curTotal += fills[curPos];
                             toRemove.push(curPos);
-                            if(curTotal == goal) {
-                                while(!toRemove.empty()){
-                                    fills[toRemove.pop()] = 0;
-                                    score += 10;
-                                }
-                                setGoal();
-                                invalidate();
-                                break;
-                            }
+
                             curPos += 7;
                             if(curPos > 48) {
                                 break;
                             }
+                        }
+                        if(curTotal == goal) {
+                            while(!toRemove.empty()){
+                                fills[toRemove.pop()] = 0;
+                                score += 10;
+                            }
+                            setGoal();
+                            invalidate();
+                            break;
                         }
                     }
                     startPos++;
