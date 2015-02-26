@@ -26,6 +26,8 @@ public class DrawAddGame extends View{
     private int squareSize;
     private boolean gameOver = false;
     private int score = 0;
+    private int[] dropQueue = new int[3];
+    private boolean newGame = true;
 
 
     public DrawAddGame(Context context) {
@@ -34,12 +36,23 @@ public class DrawAddGame extends View{
 
     private void setGoal() {
         Random r = new Random();
-        goal = r.nextInt(20 - 10 + 1) + 10;
+        goal = r.nextInt(18 - 10 + 1) + 10;
     }
 
     private void setNumToDrop() {
         Random r = new Random();
-        numToDrop = r.nextInt(9 - 1 + 1) + 1;
+        int tempDrop = r.nextInt(9 - 1 + 1) + 1;
+        numToDrop = dropQueue[0];
+        dropQueue[0] = dropQueue[1];
+        dropQueue[1] = dropQueue[2];
+        dropQueue[2] = tempDrop;
+    }
+
+    private void initDropQueue() {
+        Random r = new Random();
+        for(int i = 0; i < 3; i++) {
+            dropQueue[i] = r.nextInt(9 - 1 + 1) + 1;
+        }
     }
 
 
@@ -47,6 +60,11 @@ public class DrawAddGame extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if(newGame) {
+            initDropQueue();
+            newGame = false;
+        }
 
         Paint borderBlue = new Paint();
         borderBlue.setColor(Color.BLUE);
@@ -111,6 +129,12 @@ public class DrawAddGame extends View{
             canvas.drawText("SCORE", (squareSize + 400 + (squareSize / 4)), (squareSize + squareSize - 20), fillBlueText);
             canvas.drawText(String.valueOf(score), squareSize + 400 + (squareSize / 4), (squareSize * 2 + squareSize - 20), fillBlueText);
 
+            // Draw goalqueue
+            Rect queue[] = new Rect[3];
+
+
+
+
             // If number has empty space below it, moves the number down and redraws the canvas
             for (int i = 41; i >= 0; i--) {
                 if (fills[i + 7] == 0 && fills[i] != 0) {
@@ -121,6 +145,16 @@ public class DrawAddGame extends View{
             }
             if (isUpdating) {
                 try {
+                    for (int i = 0; i < 3; i++) {
+                        //            Log.d("Square", "Square " + i + ": " + fills[i]);
+                        queue[i] = new Rect();
+                        queue[i].set(squareSize + (squareSize * i), canvas.getHeight() - squareSize, squareSize + (squareSize * i) + squareSize, canvas.getHeight());
+
+                        canvas.drawRect(queue[i], borderBlue);
+                        if (dropQueue[i] != 0) {
+                            canvas.drawText(String.valueOf(dropQueue[i]), (squareSize + (squareSize * i) + (squareSize / 4)), (canvas.getHeight() - squareSize + squareSize - 20), fillBlueText);
+                        }
+                    }
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
 
@@ -128,6 +162,19 @@ public class DrawAddGame extends View{
                 invalidate();
             } else {
                 setNumToDrop();
+                // Draw goalqueue
+
+                for (int i = 0; i < 3; i++) {
+                    //            Log.d("Square", "Square " + i + ": " + fills[i]);
+                    queue[i] = new Rect();
+                    queue[i].set(squareSize + (squareSize * i), canvas.getHeight() - squareSize, squareSize + (squareSize * i) + squareSize, canvas.getHeight());
+
+                    canvas.drawRect(queue[i], borderBlue);
+                    if (dropQueue[i] != 0) {
+                        canvas.drawText(String.valueOf(dropQueue[i]), (squareSize + (squareSize * i) + (squareSize / 4)), (canvas.getHeight() - squareSize + squareSize - 20), fillBlueText);
+                    }
+                }
+                Log.d("drop nums", "num: " + numToDrop + " 1: " + dropQueue[0] + " 2: " + dropQueue[1] + " 3: " + dropQueue[2]);
                 Rect toDropRect = new Rect();
                 toDropRect.set((4 * squareSize), canvas.getHeight() / 4, 5 * squareSize, (canvas.getHeight() / 4) + squareSize);
                 canvas.drawRect(toDropRect, borderBlue);
@@ -136,7 +183,7 @@ public class DrawAddGame extends View{
 
                 int startPos = 0;
                 for(int i = 0; i < 48; i++) {
-                    Stack<Integer> toRemove = new Stack<>();
+                    Stack<Integer> toRemove = new Stack();
                     int curPos = i;
                     int curTotal = 0;
                     if(fills[i] != 0) {
