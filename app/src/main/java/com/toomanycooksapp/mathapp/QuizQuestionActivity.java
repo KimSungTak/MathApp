@@ -18,10 +18,10 @@ import static android.app.AlertDialog.*;
 
 public class QuizQuestionActivity extends ActionBarActivity {
 
-    QuizSingleton quiz;
-    ProblemBuilder pb;
-    QuizQuestion qq;
-    int lesson;
+    private QuizSingleton quiz;
+    private ProblemBuilder pb;
+    private QuizQuestion qq;
+    private int lesson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -13,9 +13,9 @@ import android.widget.Button;
 
 public class QuizResultsActivity extends ActionBarActivity {
 
-    QuizSingleton quiz;
-    int lesson;
-    String lessonName = "";
+    private QuizSingleton quiz;
+    private int lesson;
+    private String lessonName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

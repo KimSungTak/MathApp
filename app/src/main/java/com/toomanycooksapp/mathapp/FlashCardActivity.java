@@ -13,16 +13,16 @@ import java.util.ArrayList;
 
 public class FlashCardActivity extends ActionBarActivity {
 
-    ArrayList<FlashCard> fc;
-    int currentIndex;
-    boolean questionDisplayed;
-    ProblemBuilder pb;
-    int lesson;
-    TextView flashCardView;
+    private ArrayList<FlashCard> fc;
+    private int currentIndex;
+    private boolean questionDisplayed;
+    private ProblemBuilder pb;
+    private int lesson;
+    private TextView flashCardView;
 
-    Button flipButton;
-    Button backButton;
-    Button nextButton;
+    private Button flipButton;
+    private Button backButton;
+    private Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
