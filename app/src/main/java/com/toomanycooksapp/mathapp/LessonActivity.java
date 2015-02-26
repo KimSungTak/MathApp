@@ -66,6 +66,19 @@ public class LessonActivity extends ActionBarActivity {
                 break;
         }
 
+        fcButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startFlashCard();
+            }
+        });
+        quizButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startQuiz();
+            }
+        });
+
         lessonButton = (Button) findViewById(R.id.lessonButton);
         gameButton  = (Button) findViewById(R.id.gameButton);
         fcButton = (Button) findViewById(R.id.fcButton);
@@ -98,6 +111,23 @@ public class LessonActivity extends ActionBarActivity {
     // Creates intent and starts AddGameActivity
     private void startAddGame() {
         Intent intent = new Intent(this, AddGameActivity.class);
+        startActivity(intent);
+    }
+
+    // Creates intent and starts FlashCardActivity
+    private void startFlashCard()
+    {
+        Intent intent = new Intent(this, FlashCardActivity.class);
+        intent.putExtra("lesson",lesson);
+        startActivity(intent);
+    }
+
+    // Creates intent and starts QuizQuestionActivity
+    private void startQuiz()
+    {
+        QuizSingleton.getNewInstance();
+        Intent intent = new Intent(this, QuizQuestionActivity.class);
+        intent.putExtra("lesson",lesson);
         startActivity(intent);
     }
 }
