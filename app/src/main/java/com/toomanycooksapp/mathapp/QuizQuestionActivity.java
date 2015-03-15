@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
@@ -38,6 +37,16 @@ public class QuizQuestionActivity extends ActionBarActivity {
             //0 -> Addition
             case 0:
                 pb = new AdditionProblemBuilder();
+                break;
+            //1 -> Subtraction
+            case 1:
+                pb = new SubtractionProblemBuilder();
+                break;
+            case 2:
+                pb = new MultiplicationProblemBuilder();
+                break;
+            case 3:
+                pb = new DivisionProblemBuilder();
                 break;
             default:
                 return;

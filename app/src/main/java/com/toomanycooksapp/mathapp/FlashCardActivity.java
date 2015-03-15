@@ -42,6 +42,16 @@ public class FlashCardActivity extends ActionBarActivity {
             case 0:
                 pb = new AdditionProblemBuilder();
                 break;
+            //1 -> Subtraction
+            case 1:
+                pb = new SubtractionProblemBuilder();
+                break;
+            case 2:
+                pb = new MultiplicationProblemBuilder();
+                break;
+            case 3:
+                pb = new DivisionProblemBuilder();
+                break;
             default:
                 return;
         }

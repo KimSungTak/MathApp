@@ -33,6 +33,15 @@ public class QuizResultsActivity extends ActionBarActivity {
             case 0:
                 lessonName = "addition";
                 break;
+            case 1:
+                lessonName = "subtraction";
+                break;
+            case 2:
+                lessonName = "multiplication";
+                break;
+            case 3:
+                lessonName = "division";
+                break;
             default:
                 return;
         }
