@@ -24,12 +24,12 @@
         android:layout_height="wrap_content"
         android:text="Lesson"
         android:id="@+id/lessonButton"
-        android:layout_below="@+id/lessonText"
+        android:layout_below="@id/lessonText"
         android:layout_marginTop="61dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/lessonText"
-        android:layout_alignEnd="@+id/lessonText" />
+        android:layout_alignRight="@id/lessonText"
+        android:layout_alignEnd="@id/lessonText" />
 
     <Button
         android:layout_width="wrap_content"
