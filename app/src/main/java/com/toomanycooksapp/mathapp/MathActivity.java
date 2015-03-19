@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.toomanycooksapp.mathapp.lessons.LessonsActivity;
+
 
 public class MathActivity extends ActionBarActivity {
 
@@ -78,11 +80,23 @@ public class MathActivity extends ActionBarActivity {
                 startQuiz();
             }
         });
+        lessonButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startLesson();
+            }
+        });
 
         lessonButton = (Button) findViewById(R.id.lessonButton);
         gameButton  = (Button) findViewById(R.id.gameButton);
         fcButton = (Button) findViewById(R.id.fcButton);
         quizButton = (Button) findViewById(R.id.quizButton);
+    }
+
+    private void startLesson() {
+        Intent intent = new Intent(this, LessonsActivity.class);
+        intent.putExtra("subject",lesson);
+        startActivity(intent);
     }
 
 

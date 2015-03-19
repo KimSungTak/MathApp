@@ -1,6 +1,6 @@
 package com.toomanycooksapp.mathapp.lessons;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +13,19 @@ import com.toomanycooksapp.mathapp.R;
  */
 public class ProblemFragment extends Fragment {
 
+    private int subject;
+    private int pass;
+
     public ProblemFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle b = getArguments();
+        subject = b.getInt("subject");
+        pass = b.getInt("pass");
         return inflater.inflate(R.layout.fragment_definition, container, false);
     }
 }

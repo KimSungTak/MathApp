@@ -1,48 +1,59 @@
 package com.toomanycooksapp.mathapp.lessons;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import android.view.View;
 
 import com.toomanycooksapp.mathapp.R;
 
-public class LessonsActivity extends ActionBarActivity {
+public class LessonsActivity extends ActionBarActivity implements View.OnClickListener {
 
 
-    PictureFragment pictureFragment;
-    DefinitionFragment definitionFragment;
-    ProblemFragment problemFragment;
+    private PictureFragment pictureFragment;
+    private DefinitionFragment definitionFragment;
+    private ProblemFragment problemFragment;
+    private FragmentManager manager;
+    private int pass = 0;
+    private  int subject;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+        manager = this.getFragmentManager();
+        subject = getIntent().getIntExtra("subject",0);
 
+
+        Fragment fragment = Fragment.instantiate(this, DefinitionFragment.class.getName());
+        Bundle b = new Bundle();
+        b.putInt("pass", pass);
+        b.putInt("subject", subject);
+        fragment.setArguments(b);
+        addFragment(fragment);
 
     }
 
+    private void addFragment(Fragment fragment) {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lessons, menu);
-        return true;
+        manager.executePendingTransactions();
+        invalidateOptionsMenu();
+
+        manager.beginTransaction()
+                .replace(R.id.lesson_content, fragment)
+                .commit();
     }
 
+
+    //handle all transactions and events here
+    
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onClick(View v) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+
     }
 }
