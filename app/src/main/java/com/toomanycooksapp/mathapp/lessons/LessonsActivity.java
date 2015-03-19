@@ -9,10 +9,18 @@ import com.toomanycooksapp.mathapp.R;
 
 public class LessonsActivity extends ActionBarActivity {
 
+
+    PictureFragment pictureFragment;
+    DefinitionFragment definitionFragment;
+    ProblemFragment problemFragment;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+
+
     }
 
 

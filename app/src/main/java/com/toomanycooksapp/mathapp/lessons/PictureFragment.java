@@ -11,9 +11,9 @@ import com.toomanycooksapp.mathapp.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class LessonsActivityFragment extends Fragment {
+public class PictureFragment extends Fragment {
 
-    public LessonsActivityFragment() {
+    public PictureFragment() {
     }
 
     @Override
