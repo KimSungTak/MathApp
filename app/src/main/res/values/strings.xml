@@ -10,5 +10,6 @@
     <string name="flashCardText"></string>
     <string name="title_activity_quiz_question">QuizQuestionActivity</string>
     <string name="title_activity_quiz_results">QuizResultsActivity</string>
+    <string name="title_activity_lessons">Lesson</string>
 
 </resources>

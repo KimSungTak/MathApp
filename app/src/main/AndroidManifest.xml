@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LessonActivity"
+            android:name=".MathActivity"
             android:label="@string/title_activity_math" >
         </activity>
         <activity
@@ -35,6 +35,10 @@
         <activity
             android:name=".QuizResultsActivity"
             android:label="@string/title_activity_quiz_results" >
+        </activity>
+        <activity
+            android:name=".lessons.LessonsActivity"
+            android:label="@string/title_activity_lessons" >
         </activity>
     </application>
 

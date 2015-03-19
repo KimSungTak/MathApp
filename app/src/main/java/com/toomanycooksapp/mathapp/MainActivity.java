@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
     // (if this doesn't make sense let me know and I will try to explain it better)
     // (if it does make sense but you think there is a better way to do it go for it)
     private void goToLesson(int lesson) {
-        Intent lessonIntent = new Intent(this, LessonActivity.class);
+        Intent lessonIntent = new Intent(this, MathActivity.class);
         lessonIntent.putExtra("lesson", lesson);
         startActivity(lessonIntent);
     }

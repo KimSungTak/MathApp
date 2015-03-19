@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LessonActivity extends ActionBarActivity {
+public class MathActivity extends ActionBarActivity {
 
     // This is sent in the intent to the LessonActivity
     // 0 -> addition
