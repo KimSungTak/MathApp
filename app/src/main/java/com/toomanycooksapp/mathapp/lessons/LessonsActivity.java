@@ -8,8 +8,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
+import com.toomanycooksapp.mathapp.Problem;
 import com.toomanycooksapp.mathapp.R;
 
 public class LessonsActivity extends ActionBarActivity implements View.OnClickListener {
@@ -21,7 +24,7 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
     private FragmentManager manager;
     private int pass = 0;
     private int subject;
-    public static final String[] SUBJECTS = {"ADD","SUBTRACT","MULTIPLY", "DIVIDE"};
+    public static final String[] SUBJECTS = {"ADD", "SUBTRACT", "MULTIPLY", "DIVIDE"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +57,49 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+
         switch (pass) {
             case 0:
                 onDefinitionClicks(v);
                 break;
+            case 1:
+                onPictureClicks(v);
+                break;
+
         }
 
 
+    }
+
+    private void onPictureClicks(View v) {
+
+        if (v.getId() == R.id.picture_submit) {
+            final int answerGiven = Integer.parseInt("" + ((EditText) findViewById(R.id.picture_answer)).getText());
+            final int answerKey = PictureFragment.answer;
+            final int x = Integer.parseInt("" + ((TextView) findViewById(R.id.picture_x)).getText());
+            final int y = Integer.parseInt("" + ((TextView) findViewById(R.id.picture_y)).getText());
+
+            final boolean passed = answerGiven == answerKey;
+            AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+            alert.setMessage(x + " " + SUBJECTS[subject] + (subject > 1 ? " " : " by ")
+                    + y + " equals " + answerKey + (passed ? "" : " not " + answerGiven));
+            alert.setTitle(passed ? "Great Job!" : "Not Quite");
+            alert.setPositiveButton(passed ? "Onward!" : "Try Again", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (passed) {
+                        pass++;
+                        addFragment(ProblemFragment.class.getName());
+                    } else {
+                        addFragment(PictureFragment.class.getName());
+                    }
+                }
+
+            });
+            AlertDialog popup = alert.create();
+            popup.show();
+
+        }
     }
 
     private void onDefinitionClicks(View v) {
@@ -84,9 +123,9 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
         final boolean passed = subject == pressed;
         //pop ups
         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
-        alert.setMessage("To "+SUBJECTS[pressed]+" means to "+DefinitionFragment.DEFINITIONS[pressed] + ".");
-        alert.setTitle(passed?"Great Job!":"Not Quite");
-        alert.setPositiveButton(passed?"Onward!":"Try Again", new DialogInterface.OnClickListener() {
+        alert.setMessage("To " + SUBJECTS[pressed] + " means to " + DefinitionFragment.DEFINITIONS[pressed] + ".");
+        alert.setTitle(passed ? "Great Job!" : "Not Quite");
+        alert.setPositiveButton(passed ? "Onward!" : "Try Again", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (passed) {
