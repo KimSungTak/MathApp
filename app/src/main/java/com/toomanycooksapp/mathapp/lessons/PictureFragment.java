@@ -92,6 +92,31 @@ public class PictureFragment extends Fragment {
     }
     private void sub() {
 
+        int x = NUMBERS[subject][ 2+ RANDOM.nextInt(NUMBERS[subject].length -3)];
+        int y = NUMBERS[subject][RANDOM.nextInt(x)];
+
+        ((TextView)vthis.findViewById(R.id.picture_x)).setText(""+x);
+        ((TextView)vthis.findViewById(R.id.picture_y)).setText("" + y);
+        ((TextView)vthis.findViewById(R.id.picture_subject)).setText(DefinitionFragment.DEFINITIONS[subject] +" ");
+        ((TextView)vthis.findViewById(R.id.picture_lable2)).setText("");
+        ((TextView)vthis.findViewById(R.id.picture_question)).setText("How many squares are left?");
+        answer = x - y;
+        for(int i = 0; i< x; i++){
+            ImageView square = new ImageView(getActivity());
+            square.setPadding(5,5,5,5);
+            square.setImageResource(R.drawable.square_green);
+            top.addView(square);
+        }
+        for(int i = 0; i< y; i++){
+            ImageView square = new ImageView(getActivity());
+            square.setPadding(5,5,5,5);
+
+            square.setImageResource(R.drawable.square_green);
+            bottom.addView(square);
+        }
+
+        
+
     }
     private void div() {
 

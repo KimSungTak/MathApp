@@ -26,7 +26,7 @@ public class ProblemFragment extends Fragment {
         Bundle b = getArguments();
         subject = b.getInt("subject");
         pass = b.getInt("pass");
-        
+
         return inflater.inflate(R.layout.fragment_picture, container, false);
     }
 }
