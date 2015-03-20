@@ -69,11 +69,22 @@
         android:textStyle="bold"
         android:paddingTop="26dp"
         android:layout_height="wrap_content" />
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_into"
+        android:layout_below="@id/picture_x_layout"
+        android:layout_toRightOf="@id/picture_subject"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"/>
 
     <TextView
         android:text="3"
         android:id="@+id/picture_y"
-        android:layout_toRightOf="@id/picture_subject"
+        android:layout_toRightOf="@id/picture_into"
         android:layout_width="wrap_content"
         android:layout_below="@id/picture_x_layout"
         android:textColor="#913AC9"

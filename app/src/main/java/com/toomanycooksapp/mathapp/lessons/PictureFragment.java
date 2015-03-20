@@ -20,6 +20,7 @@ import java.util.Random;
  */
 public class PictureFragment extends Fragment {
 
+
     private int subject;
     private int pass;
     private LinearLayout top;
@@ -30,7 +31,13 @@ public class PictureFragment extends Fragment {
             /*ADD**/{1, 2, 3, 4, 5},
             /*SUB**/{1, 2, 3, 4, 5, 6, 7, 8},
             /*MULT*/{2, 3, 4},
-            /*DIV**/{2, 3, 4, 6, 8}
+            /*DIV**/{6, 8, 9, 12}
+    };
+    private static final int[][] DIVISORS = {
+            /*6*/{2, 3},
+            /*8**/{2, 4},
+            /*9**/{3},
+            /*12*/{2, 3, 4},
     };
     public static int answer = -1;
 
@@ -95,6 +102,7 @@ public class PictureFragment extends Fragment {
     private void sub() {
 
         int x = NUMBERS[subject][2 + RANDOM.nextInt(NUMBERS[subject].length - 3)];
+
         int y = NUMBERS[subject][RANDOM.nextInt(x)];
 
         ((TextView) vthis.findViewById(R.id.picture_x)).setText("" + x);
@@ -121,9 +129,41 @@ public class PictureFragment extends Fragment {
     }
 
     private void div() {
+        int index = RANDOM.nextInt(NUMBERS[subject].length - 1);
+        int x = NUMBERS[subject][index];
+        int y = DIVISORS[index][RANDOM.nextInt(DIVISORS[index].length - 1)];
 
 
+        ((TextView) vthis.findViewById(R.id.picture_x)).setText("" + x);
+        ((TextView) vthis.findViewById(R.id.picture_y)).setText("" + y);
+        ((TextView) vthis.findViewById(R.id.picture_subject)).setText(DefinitionFragment.DEFINITIONS[subject] + " ");
+        ((TextView) vthis.findViewById(R.id.picture_into)).setText(" into ");
+        ((TextView) vthis.findViewById(R.id.picture_lable2)).setText(" groups");
+        ((TextView) vthis.findViewById(R.id.picture_question)).setText("How many squares are in each group?");
+        answer = x / y;
+        for (int i = 0; i < x; i++) {
+            ImageView square = new ImageView(getActivity());
+            square.setPadding(5, 5, 5, 5);
+            square.setImageResource(R.drawable.square_green);
+            top.addView(square);
+        }
+
+        for (int i = 0; i < y; i++) {
+            LinearLayout group = new LinearLayout(getActivity());
+            group.setOrientation(LinearLayout.HORIZONTAL);
+            for (int j = 0; j < answer; j++) {
+                ImageView square = new ImageView(getActivity());
+                square.setPadding(5, 5, 5, 5);
+                square.setImageResource(R.drawable.square_green);
+                group.addView(square);
+            }
+            bottom.setDividerPadding(5);
+            group.setPadding(20, 0, 20, 0);
+//            row.setBackgroundColor(Color.BLUE);
+            bottom.addView(group);
+        }
     }
+
 
     private void mult() {
         int x = NUMBERS[subject][RANDOM.nextInt(NUMBERS[subject].length - 1)];
@@ -152,7 +192,7 @@ public class PictureFragment extends Fragment {
                 row.addView(square);
             }
             bottom.setDividerPadding(5);
-            row.setPadding(0, 15, 0, 15);
+            row.setPadding(0, 20, 0, 20);
 //            row.setBackgroundColor(Color.BLUE);
             bottom.addView(row);
         }
