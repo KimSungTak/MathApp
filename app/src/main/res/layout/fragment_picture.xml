@@ -6,7 +6,7 @@
         android:text="If you have "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/picture_root"
+        android:id="@+id/problem_root"
         android:textColor="#DA3A3A"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -16,7 +16,7 @@
     <TextView
         android:text="5"
         android:id="@+id/picture_x"
-        android:layout_toRightOf="@id/picture_root"
+        android:layout_toRightOf="@id/problem_root"
         android:layout_width="wrap_content"
         android:textColor="#913AC9"
         android:textSize="28sp"

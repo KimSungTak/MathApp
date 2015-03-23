@@ -159,7 +159,6 @@ public class PictureFragment extends Fragment {
             }
             bottom.setDividerPadding(5);
             group.setPadding(20, 0, 20, 0);
-//            row.setBackgroundColor(Color.BLUE);
             bottom.addView(group);
         }
     }

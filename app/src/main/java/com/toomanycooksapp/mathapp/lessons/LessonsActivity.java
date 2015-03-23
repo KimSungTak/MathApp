@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -18,9 +19,7 @@ import com.toomanycooksapp.mathapp.R;
 public class LessonsActivity extends ActionBarActivity implements View.OnClickListener {
 
 
-    private PictureFragment pictureFragment;
-    private DefinitionFragment definitionFragment;
-    private ProblemFragment problemFragment;
+    private Fragment current;
     private FragmentManager manager;
     private int pass = 0;
     private int subject;
@@ -50,6 +49,7 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
         manager.beginTransaction()
                 .replace(R.id.lesson_content, fragment)
                 .commit();
+        current = fragment;
     }
 
 
@@ -65,11 +65,44 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
             case 1:
                 onPictureClicks(v);
                 break;
+            case 2:
+            case 3:
+            case 4:
+                onProblemClicks(v);
+                break;
 
         }
 
 
     }
+
+    private void onProblemClicks(View v) {
+        if(v.getId() == R.id.problem_submit) {
+            boolean passed = true;
+            for (int i = 0; i < 4; i++) {
+                if (ProblemFragment.ANSWERKEYS[i] != ProblemFragment.ANSWERSGIVEN[i]) {
+                    passed = false;
+                    break;
+                }
+            }
+            if (passed) {
+                pass++;
+            }
+            if (pass != 4) {
+                ((ProblemFragment) current).initQuestion(pass);
+                return;
+            } else {
+                //you passed the lesson!
+
+                return;
+            }
+
+        }
+
+
+    }
+
+
 
     private void onPictureClicks(View v) {
 

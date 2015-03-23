@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:padding="8dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentRight="true">
+      <TextView
+          android:text="0"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/pass"
+          android:textColor="#2AB4B3"
+          android:textSize="35sp"
+          android:textStyle="bold"
+          />
+      <TextView
+          android:text="/3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/outof"
+          android:textColor="#2AB4B3"
+          android:textSize="35sp"
+          android:textStyle="bold"
+          />
+  </LinearLayout>
+
+
+
 
     <TextView
         android:text="Which numbers "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/picture_root"
+        android:id="@+id/problem_root"
         android:textColor="#DA3A3A"
         android:textSize="35sp"
         android:textStyle="bold"
         android:paddingLeft="32dp"
-        android:paddingTop="32dp"/>
+        android:paddingTop="32dp" />
 
     <TextView
         android:text="ADD"
         android:id="@+id/problems_subject"
-        android:layout_below="@id/picture_root"
+        android:layout_below="@id/problem_root"
         android:layout_width="wrap_content"
         android:textColor="#913AC9"
         android:textSize="35sp"
@@ -30,18 +62,18 @@
         android:text=" to "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/picture_root"
+        android:layout_below="@id/problem_root"
         android:id="@+id/problem_to"
         android:layout_toRightOf="@+id/problems_subject"
         android:textColor="#DA3A3A"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:paddingTop="16dp"/>
+        android:paddingTop="16dp" />
 
     <TextView
         android:text="12"
         android:id="@+id/problem_total"
-        android:layout_below="@id/picture_root"
+        android:layout_below="@id/problem_root"
         android:layout_width="wrap_content"
         android:layout_toRightOf="@id/problem_to"
         android:textColor="#913AC9"
@@ -49,11 +81,12 @@
         android:textStyle="bold"
         android:paddingTop="16dp"
         android:layout_height="wrap_content" />
+
     <TextView
         android:text="\?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/picture_root"
+        android:layout_below="@id/problem_root"
         android:layout_toRightOf="@+id/problem_total"
         android:textColor="#DA3A3A"
         android:textSize="35sp"
@@ -73,6 +106,7 @@
         android:layout_below="@id/problem_to"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView" />
+
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,8 +116,8 @@
         android:padding="16dp"
         android:id="@+id/checkBox2"
         android:layout_below="@id/checkBox1"
-        android:layout_alignLeft="@+id/checkBox1"
-         />
+        android:layout_alignLeft="@+id/checkBox1" />
+
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,6 +128,7 @@
         android:id="@+id/checkBox3"
         android:layout_below="@id/checkBox2"
         android:layout_alignLeft="@+id/checkBox1" />
+
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,11 +141,10 @@
         android:layout_alignLeft="@+id/checkBox1" />
 
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/define_seperate"
+        android:id="@+id/problem_submit"
         android:padding="15dp"
         android:textColor="#FFFFFF"
         android:inputType="number"
@@ -118,10 +152,9 @@
         android:textSize="20sp"
         android:layout_margin="32dp"
         android:background="#224AC9"
+        android:onClick="onClick"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        />
-
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>
