@@ -60,7 +60,7 @@
         android:textStyle="bold"
         android:text="4 + 4"
         android:paddingTop="18dp"
-        android:textSize="64sp"
+        android:textSize="52sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         />

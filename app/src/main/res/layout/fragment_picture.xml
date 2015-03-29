@@ -94,23 +94,23 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text=" more"
+        android:text="more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/picture_lable2"
-        android:layout_below="@id/picture_x_layout"
-        android:layout_toRightOf="@id/picture_y"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/picture_y"
         android:textColor="#DA3A3A"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:paddingTop="26dp"/>
+        android:paddingTop="2dp"/>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/picture_y"
+        android:layout_below="@id/picture_lable2"
         android:id="@+id/picture_y_layout"
         android:layout_centerHorizontal="true">
 
