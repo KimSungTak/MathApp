@@ -44,11 +44,12 @@
         android:layout_below="@id/define_means"
         android:padding="15dp"
         android:textColor="#FFFFFF"
+        android:background="#224AC9"
         android:text="Increase"
         android:onClick="onClick"
         android:textSize="20sp"
         android:layout_margin="32dp"
-        android:background="#224AC9"
+
         />
     <Button
         android:layout_width="wrap_content"

@@ -12,14 +12,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/resultsMessage"
+        android:textColor="#DA3A3A"
+        android:textSize="32sp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Return to Home Menu"
+        android:text="Return to Menu"
         android:id="@+id/homeButton"
+        android:background="#224AC9"
+        android:textColor="#FFFFFF"
+        android:padding="3dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
