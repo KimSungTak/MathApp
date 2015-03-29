@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.toomanycooksapp.mathapp.MainActivity;
+import com.toomanycooksapp.mathapp.MathActivity;
 import com.toomanycooksapp.mathapp.Problem;
 import com.toomanycooksapp.mathapp.R;
 
@@ -68,6 +71,7 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
             case 2:
             case 3:
             case 4:
+            case 5:
                 onProblemClicks(v);
                 break;
 
@@ -85,14 +89,39 @@ public class LessonsActivity extends ActionBarActivity implements View.OnClickLi
                     break;
                 }
             }
-            if (passed) {
-                pass++;
-            }
-            if (pass != 4) {
-                ((ProblemFragment) current).initQuestion(pass);
+            if (passed) pass++;
+            if (pass != 5) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+                alert.setMessage(passed?"Well done! Get " + (5-pass) +" more right and you finish the lesson!"
+                        :"Almost! You can do this! Get "+ (5-pass) +" more right and you finish the lesson!");
+                alert.setTitle(passed ? "Great Job!" : "Not Quite");
+                alert.setPositiveButton(passed ? "Next Question!" : "Try Again", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((ProblemFragment) current).initQuestion(pass);
+                    }
+
+                });
+                AlertDialog popup = alert.create();
+                popup.show();
+
+
+
                 return;
             } else {
-                //you passed the lesson!
+                AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
+                alert.setMessage("Well done! You passed this lesson! " );
+                alert.setTitle(passed ? "Great Job!" : "Not Quite");
+                alert.setPositiveButton("Onward to next lesson!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent lessonIntent = new Intent(LessonsActivity.this, MainActivity.class);
+                        startActivity(lessonIntent);
+                    }
+
+                });
+                AlertDialog popup = alert.create();
+                popup.show();
 
                 return;
             }
