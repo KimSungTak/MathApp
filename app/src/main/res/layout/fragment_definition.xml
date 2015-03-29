@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.toomanycooksapp.mathapp.lessons.DefinitionFragment">
+
+    <TextView
+        android:text="To "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/define_to"
+        android:textColor="#DA3A3A"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:paddingLeft="32dp"
+        android:paddingTop="32dp"/>
+
+
+    <TextView
+        android:text="ADD"
+        android:id="@+id/define_subject"
+        android:layout_toRightOf="@id/define_to"
+        android:layout_width="wrap_content"
+        android:textColor="#913AC9"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:paddingTop="32dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text=" means to:"
+        android:id="@+id/define_means"
+        android:layout_toRightOf="@id/define_subject"
+        android:layout_width="wrap_content"
+        android:textColor="#DA3A3A"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:paddingTop="32dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/define_increase"
+        android:layout_below="@id/define_means"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:text="Increase"
+        android:onClick="onClick"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        android:background="#224AC9"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/define_take"
+        android:layout_toRightOf="@id/define_increase"
+        android:layout_below="@id/define_means"
+        android:padding="15dp"
+        android:onClick="onClick"
+        android:textColor="#FFFFFF"
+        android:text="Take Away"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        android:background="#224AC9"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/define_seperate"
+        android:layout_below="@id/define_increase"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:onClick="onClick"
+        android:text="SEPARATE"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        android:background="#224AC9"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/define_repeat"
+        android:layout_toRightOf="@id/define_increase"
+        android:layout_below="@id/define_increase"
+        android:padding="15dp"
+        android:onClick="onClick"
+        android:textColor="#FFFFFF"
+        android:text="Repeat"
+        android:textSize="20sp"
+        android:layout_margin="32dp"
+        android:background="#224AC9"
+        />
+
+</RelativeLayout>

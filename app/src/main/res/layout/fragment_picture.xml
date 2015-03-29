@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:text="If you have "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/problem_root"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingLeft="26dp"
+        android:paddingTop="26dp"/>
+
+    <TextView
+        android:text="5"
+        android:id="@+id/picture_x"
+        android:layout_toRightOf="@id/problem_root"
+        android:layout_width="wrap_content"
+        android:textColor="#913AC9"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text=" squares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_lable"
+        android:layout_toRightOf="@id/picture_x"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/picture_x"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/picture_x_layout">
+
+
+    </LinearLayout>
+
+    <TextView
+        android:text="and you "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture_x_layout"
+        android:id="@+id/picture_root2"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingLeft="26dp"
+        android:paddingTop="26dp"/>
+
+    <TextView
+        android:text="ADD "
+        android:id="@+id/picture_subject"
+        android:layout_toRightOf="@id/picture_root2"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/picture_x_layout"
+        android:textColor="#913AC9"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_into"
+        android:layout_below="@id/picture_x_layout"
+        android:layout_toRightOf="@id/picture_subject"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"/>
+
+    <TextView
+        android:text="3"
+        android:id="@+id/picture_y"
+        android:layout_toRightOf="@id/picture_into"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/picture_x_layout"
+        android:textColor="#913AC9"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text=" more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_lable2"
+        android:layout_below="@id/picture_x_layout"
+        android:layout_toRightOf="@id/picture_y"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/picture_y"
+        android:id="@+id/picture_y_layout"
+        android:layout_centerHorizontal="true">
+
+    </LinearLayout>
+
+    <TextView
+        android:text="How many squares are there now?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_question"
+        android:paddingLeft="26dp"
+        android:layout_below="@id/picture_y_layout"
+        android:textColor="#DA3A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:paddingTop="26dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:layout_below="@id/picture_question"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp"
+        android:hint="ANSWER"
+        android:id="@+id/picture_answer"
+        android:textColorHint="#913AC9"
+        android:textColor="#913AC9"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/picture_submit"
+        android:padding="15dp"
+        android:textColor="#FFFFFF"
+        android:inputType="number"
+        android:onClick="onClick"
+        android:text="SUBMIT"
+        android:textSize="20sp"
+        android:layout_margin="26dp"
+        android:background="#224AC9"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>
