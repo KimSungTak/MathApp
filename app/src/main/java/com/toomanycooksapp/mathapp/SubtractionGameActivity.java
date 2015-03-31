@@ -9,21 +9,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class AddGameActivity extends ActionBarActivity {
+public class SubtractionGameActivity extends ActionBarActivity {
 
-    DrawAddGame ag = null;
+    DrawSubtractionGame sg = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_game);
+        setContentView(R.layout.activity_subtraction_game);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
         new AlertDialog.Builder(this)
                 .setTitle("HOW TO PLAY")
-                .setMessage("The goal of this game is to get a row or a column to add up to the GOAL. When a row or a column reaches the GOAL the row or column will be removed and points will be added to your score.")
+                .setMessage("The goal of this game is to remove numbers until all of the remaining numbers add up to the GOAL. To remove numbers simply tap on them.")
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -32,15 +32,15 @@ public class AddGameActivity extends ActionBarActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
 
-        ag = new DrawAddGame(this);
-        setContentView(ag);
+        sg = new DrawSubtractionGame(this);
+        setContentView(sg);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_game, menu);
+        getMenuInflater().inflate(R.menu.menu_subtraction_game, menu);
         return true;
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -74,6 +75,11 @@ public class DrawAddGame extends View{
         fillBlueText.setColor(Color.BLUE);
         fillBlueText.setStyle(Paint.Style.FILL);
         fillBlueText.setTextSize(100);
+
+        Paint fillGreenText = new Paint();
+        fillGreenText.setColor(Color.parseColor("#19BF19"));
+        fillGreenText.setStyle(Paint.Style.FILL);
+        fillGreenText.setTextSize(100);
 
         if(gameOver) {
             canvas.drawText("GAMEOVER", (canvas.getWidth() / 4), (canvas.getHeight() / 2), fillBlueText);
@@ -206,7 +212,14 @@ public class DrawAddGame extends View{
                                 score += 10;
                             }
                             setGoal();
-                            invalidate();
+                            canvas.drawText("GOAL", (canvas.getWidth() / 2) - 225, (canvas.getHeight() / 2) - 200, fillGreenText);
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    invalidate();
+                                }
+                            }, 300);
                             break;
                         }
                         while(!toRemove.empty()){
@@ -229,7 +242,14 @@ public class DrawAddGame extends View{
                                 score += 10;
                             }
                             setGoal();
-                            invalidate();
+                            canvas.drawText("GOAL", (canvas.getWidth() / 2) - 225, (canvas.getHeight() / 2) - 200, fillGreenText);
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    invalidate();
+                                }
+                            }, 300);
                             break;
                         }
                     }

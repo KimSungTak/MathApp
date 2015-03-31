@@ -9,9 +9,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,37 +20,41 @@
         </activity>
         <activity
             android:name=".MathActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_math" >
+            android:label="@string/title_activity_math"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".AddGameActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_add_game" >
+            android:label="@string/title_activity_add_game"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".FlashCardActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_flash_card" >
+            android:label="@string/title_activity_flash_card"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".QuizQuestionActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_quiz_question" >
+            android:label="@string/title_activity_quiz_question"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".QuizResultsActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_quiz_results" >
+            android:label="@string/title_activity_quiz_results"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".lessons.LessonsActivity"
             android:label="@string/title_activity_lessons" >
+        </activity>
+        <activity
+            android:name=".SubtractionGameActivity"
+            android:label="@string/title_activity_subtraction_game" >
         </activity>
     </application>
 
