@@ -48,6 +48,7 @@ public class DrawSubtractionGame extends View {
     // ex. if tilesToReachGoal = 3 and the goal = 9 three of the tiles would be
     // something like 3, 5, 1 which add up to the goal and the other two would be
     // random
+    // Test comment
     private void createTiles() {
         int tempGoal = goal;
         int curTotal = 0;
