@@ -56,6 +56,10 @@
             android:name=".SubtractionGameActivity"
             android:label="@string/title_activity_subtraction_game" >
         </activity>
+        <activity
+            android:name=".MultiplicationGameActivity"
+            android:label="MultiplicationGameActivity">
+         </activity>
     </application>
 
 </manifest>
