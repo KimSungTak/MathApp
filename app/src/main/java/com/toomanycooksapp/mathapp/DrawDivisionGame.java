@@ -15,9 +15,43 @@ import android.view.View;
  */
 public class DrawDivisionGame extends View {
 
+    //variables
+    private int[] dropGrid = new int[49];       //grid of spaces where answers will fall from
+    private boolean changed = false;
+    private boolean isUpdating = false;
+    private int goal;
+    private int numToDrop;
+    private int squareSize;
+    private boolean gameOver = false;
+    private int score = 0;
+    private int[] dropQueue = new int[3];
+    private boolean newGame = true;
+
+
     //default constructor
     public DrawDivisionGame(Context context) {
         super(context);
     }
-//dd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
