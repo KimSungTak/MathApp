@@ -12,7 +12,7 @@ import android.view.MenuItem;
  * Created by Charlie on 4/23/2015.
  */
 public class DivisionGameActivity extends ActionBarActivity {
-
+//d
     DrawAddGame ag = null;
 
     @Override
