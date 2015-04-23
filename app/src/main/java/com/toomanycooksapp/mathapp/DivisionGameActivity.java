@@ -25,7 +25,7 @@ public class DivisionGameActivity extends ActionBarActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("HOW TO PLAY")
-                .setMessage("The goal of this game is to get a row or a column to add up to the GOAL. When a row or a column reaches the GOAL the row or column will be removed and points will be added to your score.")
+                .setMessage("The goal of this game is to tap the correct answer to the question at the top of the screen before the answers reach the bottom of the screen.  If you run out of lives, you lose!")
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
