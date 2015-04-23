@@ -60,6 +60,10 @@
             android:name=".MultiplicationGameActivity"
             android:label="MultiplicationGameActivity">
          </activity>
+        <activity
+            android:name=".DivisionGameActivity"
+            android:label="DivisionGameActivity">
+        </activity>
     </application>
 
 </manifest>
