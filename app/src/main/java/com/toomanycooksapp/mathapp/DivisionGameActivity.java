@@ -14,12 +14,12 @@ import android.view.MenuItem;
  */
 public class DivisionGameActivity extends ActionBarActivity {
 
-    DrawAddGame ag = null;
+    DrawDivisionGame ag = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_game);
+        setContentView(R.layout.activity_division_game);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -35,7 +35,7 @@ public class DivisionGameActivity extends ActionBarActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
 
-        ag = new DrawAddGame(this);
+        ag = new DrawDivisionGame(this);
         setContentView(ag);
     }
 
