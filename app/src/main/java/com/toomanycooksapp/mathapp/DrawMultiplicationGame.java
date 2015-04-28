@@ -19,28 +19,35 @@ import java.lang.String;
 public class DrawMultiplicationGame extends View{
 
 
-    private int correct;
-    private int fuel;
-    private int part1;
-    private int part2;
-    private int[] answers = new int [4];
-    private String equation;
-    private Random r;
-    private boolean guess = false;
-    private boolean newQuestion = false;
-    private boolean win = false;
+    private int correct; //stores the correctly generated answer to question
+    private int fuel; //meter that changes depending on correct/incorrect answer
+    private int part1;//first value of generated question
+    private int part2;//second value of generated question
+    private int[] answers = new int [4];//stores the correct answer along with generated answers
+    private String equation;//stores the generated question into a string
+    private Random r;//passed around to generate values for questions and answers
+    private boolean guess = false;//value changes depending on pressing right answer
+    private boolean newQuestion = false;//checks to generate new question
+    private boolean win = false;//checks to see if player won the game
+    private int canvasHeight;
+    private int canvasWidth;
 
     public DrawMultiplicationGame(Context context) {
         super(context);
     }
 
-
+    /**
+     * generates new multiplication equation into a string
+     */
     private void makeEquation() {
         part1 = r.nextInt() % 15 + 1;
         part2 = r.nextInt() % 15 + 1;
         equation = part1 + "x" + part2;
     }
 
+    /**
+     * randomly stores the correct answer into the answers[] array along with generated values for the remaining slots
+     */
     private void makeAnswers(){
         int x, i;
         correct = part1*part2;
@@ -54,6 +61,9 @@ public class DrawMultiplicationGame extends View{
         }
     }
 
+    /**
+     * correct guess increases fuel value while incorrect guess decreases fuel
+     */
     private void updateFuel(){
         if(guess){
             fuel++;
@@ -62,8 +72,22 @@ public class DrawMultiplicationGame extends View{
             fuel--;
         }
     }
+
+    /**
+     * checks whether answer in answers[] contains the correct answer
+     * @param answer contains either one of 4 integer value "0-3"
+     * @return
+     */
     private boolean isGuess(int answer){
-        if(answer == answers[answer]){
+        int i = 0;
+        while(i < 4){
+            if(answers[i] == correct){
+                break;
+            }
+            i++;
+        }
+
+        if(answer == i){
             guess = true;
             newQuestion = true;
         }
@@ -84,6 +108,10 @@ public class DrawMultiplicationGame extends View{
         return answers;
     }
 
+    /**
+     * if fuel reaches 10+, the player wins
+     * @return boolean win
+     */
     private boolean isWin(){
         if(fuel >= 10){
             win = true;
@@ -104,6 +132,10 @@ public class DrawMultiplicationGame extends View{
             newQuestion = false;
         }
 
-
+        Paint borderBlue = new Paint();
+        borderBlue.setColor(Color.BLUE);
+        canvasHeight = canvas.getHeight();
+        canvasWidth = canvas.getWidth();
+        canvas.drawRect(canvasWidth-15, canvasHeight - (getFuel()%10), canvasWidth, canvasHeight, borderBlue);
 }
 }
