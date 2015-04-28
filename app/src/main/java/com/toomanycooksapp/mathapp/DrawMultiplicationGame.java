@@ -20,7 +20,7 @@ public class DrawMultiplicationGame extends View{
 
 
     private int correct; //stores the correctly generated answer to question
-    private int fuel; //meter that changes depending on correct/incorrect answer
+    private int fuel = 5; //meter that changes depending on correct/incorrect answer
     private int part1;//first value of generated question
     private int part2;//second value of generated question
     private int[] answers = new int [4];//stores the correct answer along with generated answers
@@ -132,10 +132,29 @@ public class DrawMultiplicationGame extends View{
             newQuestion = false;
         }
 
-        Paint borderBlue = new Paint();
-        borderBlue.setColor(Color.BLUE);
         canvasHeight = canvas.getHeight();
         canvasWidth = canvas.getWidth();
+
+        Paint borderBlue = new Paint();
+        borderBlue.setColor(Color.BLUE);
+        borderBlue.setStyle(Paint.Style.STROKE);
+
+        Paint fillBlueText = new Paint();
+        fillBlueText.setColor(Color.BLUE);
+        fillBlueText.setStyle(Paint.Style.FILL);
+        fillBlueText.setTextSize(100);
+
+        Paint fillGreenText = new Paint();
+        fillGreenText.setColor(Color.parseColor("#19BF19"));
+        fillGreenText.setStyle(Paint.Style.FILL);
+        fillGreenText.setTextSize(100);
+
+        Paint fillRedText = new Paint();
+        fillRedText.setColor(Color.RED);
+        fillRedText.setStyle(Paint.Style.FILL);
+        fillRedText.setTextSize(100);
         canvas.drawRect(canvasWidth-15, canvasHeight - (getFuel()%10), canvasWidth, canvasHeight, borderBlue);
-}
+
+        canvas.drawText("TEST: ", (canvas.getWidth() / 4) - 100, canvas.getHeight() / 4, fillBlueText);
+    }
 }
