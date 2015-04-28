@@ -131,11 +131,11 @@ public class DrawSubtractionGame extends View {
                 canvas.drawText(String.valueOf(tiles[i]), (canvas.getWidth() / 6) * (i + 1), (canvas.getHeight() / 2), fillBlueText);
             }
         }
-        canvas.drawText("GOAL: ", (canvas.getWidth() / 4) - 100, canvas.getHeight() / 4, fillBlueText);
-        canvas.drawText(String.valueOf(goal), (canvas.getWidth() / 2), (canvas.getHeight() / 4), fillBlueText);
+        canvas.drawText("GOAL: " + String.valueOf(goal), (canvas.getWidth() / 4) - 100, canvas.getHeight() / 4, fillBlueText);
+        //canvas.drawText(String.valueOf(goal), (canvas.getWidth() / 2), (canvas.getHeight() / 4), fillBlueText);
 
-        canvas.drawText("SCORE: ", (canvas.getWidth() / 4) - 100, canvas.getHeight(), fillBlueText);
-        canvas.drawText(String.valueOf(score), (canvas.getWidth() / 2), canvas.getHeight(), fillBlueText);
+        canvas.drawText("SCORE: " + String.valueOf(score), (canvas.getWidth() / 4) - 100, canvas.getHeight(), fillBlueText);
+        //canvas.drawText(String.valueOf(score), (canvas.getWidth() / 2), canvas.getHeight(), fillBlueText);
 
         if(checkCorrect == goal) {
             score += 10;
