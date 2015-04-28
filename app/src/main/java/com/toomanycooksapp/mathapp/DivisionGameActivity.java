@@ -7,6 +7,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 /**
  * Created by Charlie on 4/23/2015.
@@ -14,7 +24,11 @@ import android.view.MenuItem;
  */
 public class DivisionGameActivity extends ActionBarActivity {
 
-    DrawDivisionGame ag = null;
+    //DrawDivisionGame ag = null;
+    float locY;
+    TextView tv1;
+    TextView sep1;
+    TextView sep2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +49,8 @@ public class DivisionGameActivity extends ActionBarActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
 
-        ag = new DrawDivisionGame(this);
-        setContentView(ag);
+        //ag = new DrawDivisionGame(this);
+        //setContentView(ag);
     }
 
 
@@ -60,5 +74,39 @@ public class DivisionGameActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void PrintHi(View v)
+    {
+        TextView tv1 = (TextView)findViewById(R.id.textView2);
+        tv1.setText("Hello");
+
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(50, 50, 0, 0);
+
+        tv1.setLayoutParams(lp);
+    }
+
+    public void ButtonStart(View v)
+    {
+        tv1 = (TextView)findViewById(R.id.textView2);
+        sep1 = (TextView)findViewById(R.id.textView6);
+        sep2 = (TextView)findViewById(R.id.textView7);
+        locY= tv1.getY();
+
+        Timer myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                locY= tv1.getY();
+                if(locY+tv1.getHeight() >= sep2.getY())
+                    tv1.setY(sep1.getY()+1 +2*tv1.getHeight());
+                else
+                    tv1.setY(locY +50);
+            }
+
+        }, 0, 500);
+
+
     }
 }
