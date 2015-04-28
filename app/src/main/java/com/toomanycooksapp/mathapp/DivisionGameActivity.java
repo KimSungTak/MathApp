@@ -2,6 +2,7 @@ package com.toomanycooksapp.mathapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
@@ -26,10 +28,26 @@ public class DivisionGameActivity extends ActionBarActivity {
 
     //DrawDivisionGame ag = null;
     float locY;
+
+    TextView problem;
+
     TextView tv1;
+    TextView tv2;
+    TextView tv3;
+    TextView tv4;
+
     TextView sep1;
     TextView sep2;
 
+    Button start;
+
+    Timer myTimer;
+
+    private int answer;                         //the correct answer to the generated question
+    private String problemString;               //string value of the division problem
+    private int[] answerTiles = new int[4];     //the answer tiles that fall from the top of the screen
+    // notifies the program if it needs to generate a new answer
+    private int lives = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +67,21 @@ public class DivisionGameActivity extends ActionBarActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
 
-        //ag = new DrawDivisionGame(this);
-        //setContentView(ag);
+        problem = (TextView) findViewById(R.id.textView6);
+
+        tv1 = (TextView)findViewById(R.id.textView2);
+        tv2 = (TextView)findViewById(R.id.textView3);
+        tv3 = (TextView)findViewById(R.id.textView4);
+        tv4 = (TextView)findViewById(R.id.textView5);
+
+        sep1 = (TextView)findViewById(R.id.textView6);
+        sep2 = (TextView)findViewById(R.id.textView7);
+
+        locY= tv1.getY();
+
+        start = (Button)findViewById(R.id.button);
+
+       changeText();
     }
 
 
@@ -78,35 +109,173 @@ public class DivisionGameActivity extends ActionBarActivity {
 
     public void PrintHi(View v)
     {
-        TextView tv1 = (TextView)findViewById(R.id.textView2);
-        tv1.setText("Hello");
+        if(tv1.getText().equals(Integer.toString(answer)))
+        {
+            tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv2.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            changeText();
+        }
 
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(50, 50, 0, 0);
+        else
+        {
+            tv1.setTextColor(Color.RED);
+        }
+    }
 
-        tv1.setLayoutParams(lp);
+    public void Answer2(View v)
+    {
+        if(tv2.getText().equals(Integer.toString(answer)))
+        {
+            tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv2.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            changeText();
+        }
+        else
+        {
+            tv2.setTextColor(Color.RED);
+        }
+    }
+
+    public void Answer3(View v)
+    {
+        if(tv3.getText().equals(Integer.toString(answer)))
+        {
+            tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv2.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            changeText();
+        }
+
+        else
+        {
+            tv3.setTextColor(Color.RED);
+        }
+    }
+
+    public void Answer4(View v)
+    {
+        if(tv4.getText().equals(Integer.toString(answer)))
+        {
+            tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv2.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+            changeText();
+        }
+        else
+        {
+            tv4.setTextColor(Color.RED);
+        }
     }
 
     public void ButtonStart(View v)
     {
-        tv1 = (TextView)findViewById(R.id.textView2);
-        sep1 = (TextView)findViewById(R.id.textView6);
-        sep2 = (TextView)findViewById(R.id.textView7);
-        locY= tv1.getY();
+        start.setEnabled(false);
 
-        Timer myTimer = new Timer();
+        myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 locY= tv1.getY();
-                if(locY+tv1.getHeight() >= sep2.getY())
-                    tv1.setY(sep1.getY()+1 +2*tv1.getHeight());
-                else
-                    tv1.setY(locY +50);
+                if(locY+tv1.getHeight() >= sep2.getY()) {
+                    //tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
+                    myTimer.cancel();
+
+
+
+
+                }
+                else {
+                    tv1.setY(locY + 5);
+                    tv2.setY(locY + 5);
+                    tv3.setY(locY + 5);
+                    tv4.setY(locY + 5);
+                }
             }
 
-        }, 0, 500);
+        }, 30, 30);
+    }
 
+    private void createProblem(){
+        int numerator, denominator;     // numerator/denominator
+        double tempAnswer;              //temporary answer for integer logic
 
+        //initialize random number generator
+        Random r = new Random();
+
+        //generate a numerator always above 2
+        numerator = r.nextInt(20 - 2 + 1) + 2;
+
+        //keep generating a denominator that is less than the numerator until you get an integer answer
+        //between 1 and numerator
+        while(true){
+            denominator = r.nextInt(numerator - 1 + 1) + 1;
+
+            tempAnswer = (double)numerator/(double)denominator;
+
+            //see if the answer is an integer
+            if (tempAnswer == (int)tempAnswer){
+                //if it is, set the answer and break the loop
+                answer = numerator/denominator;
+                break;
+            }
+        }
+
+        //put the problem into string form
+        problemString = numerator + " / " + denominator + " = ?"/*+ answer*/;
+
+        //put the answer in the answer tiles randomly
+        int answerIndex = r.nextInt(answerTiles.length);
+        answerTiles[answerIndex] = answer;
+
+        //fill in the rest with dummy values
+        for(int i=0;i<answerTiles.length;i++){
+            //if we aren't on the correct answer
+            if(i!=answerIndex){
+                while(true){
+                    //try a random number
+                    int tryAnswer = r.nextInt(20 - 1 + 1) + 1;
+                    //if that number isn't in the answer tiles
+                    if(!answerIsInTiles(tryAnswer)){
+                        //add it and break the loop
+                        answerTiles[i] = tryAnswer;
+                        break;
+                    }
+                    //otherwise keep looping
+                }
+            }
+        }
+    }
+
+    private boolean answerIsInTiles(int look){
+        for(int i=0; i<answerTiles.length; i++){
+            if(answerTiles[i]==look){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void changeText()
+    {
+        createProblem();
+
+        tv1.setText(Integer.toString(answerTiles[0]));
+        tv1.setTextColor(Color.BLACK);
+        tv2.setText(Integer.toString(answerTiles[1]));
+        tv2.setTextColor(Color.BLACK);
+        tv3.setText(Integer.toString(answerTiles[2]));
+        tv3.setTextColor(Color.BLACK);
+        tv4.setText(Integer.toString(answerTiles[3]));
+        tv4.setTextColor(Color.BLACK);
+
+        problem.setText(problemString);
     }
 }
+
+
