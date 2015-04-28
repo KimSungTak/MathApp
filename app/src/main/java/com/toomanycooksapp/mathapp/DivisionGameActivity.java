@@ -2,6 +2,7 @@ package com.toomanycooksapp.mathapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -29,6 +32,8 @@ public class DivisionGameActivity extends ActionBarActivity {
     //DrawDivisionGame ag = null;
     float locY;
 
+    TextView score;
+
     TextView problem;
 
     TextView tv1;
@@ -42,6 +47,8 @@ public class DivisionGameActivity extends ActionBarActivity {
     Button start;
 
     Timer myTimer;
+
+    boolean lock=false;
 
     private int answer;                         //the correct answer to the generated question
     private String problemString;               //string value of the division problem
@@ -58,7 +65,7 @@ public class DivisionGameActivity extends ActionBarActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle("HOW TO PLAY")
-                .setMessage("The goal of this game is to tap the correct answer to the question at the top of the screen before the answers reach the bottom of the screen.  If you run out of lives, you lose!")
+                .setMessage("The goal of this game is to tap the correct answer to the question at the top of the screen before the answers reach the bottom of the screen.")
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -77,9 +84,15 @@ public class DivisionGameActivity extends ActionBarActivity {
         sep1 = (TextView)findViewById(R.id.textView6);
         sep2 = (TextView)findViewById(R.id.textView7);
 
+        score = (TextView) findViewById(R.id.textView8);
+
         locY= tv1.getY();
 
         start = (Button)findViewById(R.id.button);
+        tv1.setEnabled(false);
+        tv2.setEnabled(false);
+        tv3.setEnabled(false);
+        tv4.setEnabled(false);
 
        changeText();
     }
@@ -109,6 +122,7 @@ public class DivisionGameActivity extends ActionBarActivity {
 
     public void PrintHi(View v)
     {
+        if(lock == false){
         if(tv1.getText().equals(Integer.toString(answer)))
         {
             tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
@@ -116,16 +130,19 @@ public class DivisionGameActivity extends ActionBarActivity {
             tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             changeText();
+
+            score.setText(Integer.toString(Integer.parseInt(score.getText().toString())+1));
         }
 
         else
         {
             tv1.setTextColor(Color.RED);
         }
-    }
+    }}
 
     public void Answer2(View v)
     {
+        if(lock==false){
         if(tv2.getText().equals(Integer.toString(answer)))
         {
             tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
@@ -133,15 +150,17 @@ public class DivisionGameActivity extends ActionBarActivity {
             tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             changeText();
+            score.setText(Integer.toString(Integer.parseInt(score.getText().toString())+1));
         }
         else
         {
             tv2.setTextColor(Color.RED);
         }
-    }
+    }}
 
     public void Answer3(View v)
     {
+        if(lock ==false){
         if(tv3.getText().equals(Integer.toString(answer)))
         {
             tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
@@ -149,16 +168,18 @@ public class DivisionGameActivity extends ActionBarActivity {
             tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             changeText();
+            score.setText(Integer.toString(Integer.parseInt(score.getText().toString())+1));
         }
 
         else
         {
             tv3.setTextColor(Color.RED);
         }
-    }
+    }}
 
     public void Answer4(View v)
     {
+        if(lock == false){
         if(tv4.getText().equals(Integer.toString(answer)))
         {
             tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
@@ -166,15 +187,20 @@ public class DivisionGameActivity extends ActionBarActivity {
             tv3.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             tv4.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
             changeText();
+            score.setText(Integer.toString(Integer.parseInt(score.getText().toString())+1));
         }
         else
         {
             tv4.setTextColor(Color.RED);
-        }
+        }}
     }
 
     public void ButtonStart(View v)
     {
+        tv1.setEnabled(true);
+        tv2.setEnabled(true);
+        tv3.setEnabled(true);
+        tv4.setEnabled(true);
         start.setEnabled(false);
 
         myTimer = new Timer();
@@ -183,12 +209,8 @@ public class DivisionGameActivity extends ActionBarActivity {
             public void run() {
                 locY= tv1.getY();
                 if(locY+tv1.getHeight() >= sep2.getY()) {
-                    //tv1.setY(sep1.getY() + 2 * tv1.getHeight() - 20);
                     myTimer.cancel();
-
-
-
-
+                    lock = true;
                 }
                 else {
                     tv1.setY(locY + 5);
